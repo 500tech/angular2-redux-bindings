@@ -15,13 +15,16 @@ Add to your packages:
 call the `initStore()` before angular bootstrap:
 
     import {initStore} from 'angular2-redux-bindings'
+
     initStore(store)
+
 
 bind state to your component with `@MapState`:
 ```
   import {mapState} from 'angular2-redux-bindings'
 
   class Component () {
+
     @MapState('value')
       private value;
   }
@@ -33,6 +36,7 @@ you can use a function instead:
   import {mapState} from 'angular2-redux-bindings'
 
   class Component () {
+
     @MapState()
     mapStateToThis(state){
       return {
@@ -48,6 +52,7 @@ Bind action creators (one or more):
   import {actionCreator} from 'your-acrions'
 
   class Component () {
+
     @BindActions(actionCreator)
     private action;
   }
@@ -59,6 +64,7 @@ Bind action creators (one or more):
   import * as actions    from 'your-acrions'
 
   class Component () {
+
     @BindActions(actions)
     private actions;
   }
