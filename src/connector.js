@@ -68,7 +68,7 @@ function mapSliceToProp(target, prop, value) {
 
   return _store.subscribe(function () {
     if (target[prop] !== getStateSlice(_store, value)) {
-      target[prop] = _store.getState()[value]
+      target[prop] = getStateSlice(_store, value)
     }
   })
 }
