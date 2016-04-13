@@ -1,0 +1,33 @@
+{
+  "name": "angular2-redux-adaptor",
+  "version": "0.1.0",
+  "description": "Decorators and providers for connecting Angular2 to redux",
+  "main": "src/connector.js",
+  "typings": "./index.d.ts",
+  "scripts": {
+    "build": "babel src -d dist",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nirkaufman/angular2-redux-adaptor.git"
+  },
+  "keywords": [
+    "angular2",
+    "angular",
+    "redux",
+    "javaScript",
+    "typeScript"
+  ],
+  "author": "Nir Kaufman <nirkaufman.com> (nirkaufman.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nirkaufman/angular2-redux-adaptor/issues"
+  },
+  "homepage": "https://github.com/nirkaufman/angular2-redux-adaptor#readme",
+
+  "dependencies": {
+    "lodash": "^4.10.0",
+    "redux": "^3.4.0"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "name": "angular2-redux-adaptor",
+  "version": false,
+  "dependencies": {
+    "redux": "registry:npm/redux#3.0.6+20160214194820"
+  }
+}
