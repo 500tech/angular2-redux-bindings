@@ -1,6 +1,6 @@
 {
   "name": "angular2-redux-bindings",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Decorators for connecting Angular2 to redux store",
   "main": "src/connector.js",
   "typings": "./index.d.ts",
@@ -21,7 +21,6 @@
   ],
   "author": "Nir Kaufman <nirkaufman.com> (nirkaufman.com)",
   "license": "MIT",
-
   "dependencies": {
     "lodash": "^4.10.0",
     "redux": "^3.4.0"
