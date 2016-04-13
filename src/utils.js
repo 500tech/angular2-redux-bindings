@@ -6,7 +6,13 @@ exports.isString = function (value) {
   return typeof value === 'string'
 };
 
-// compare two given objects (shallow)
+/**
+ * @desc compare two given objects
+ *
+ * @param a
+ * @param b
+ * @returns {boolean}
+ */
 exports.shallowEqual = function (a, b) {
   if (a === b) {
     return true;

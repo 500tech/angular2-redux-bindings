@@ -2,13 +2,40 @@ var redux = require('redux');
 var utils = require('./utils');
 var _     = require('lodash');
 
-// reference to the store
 var _store;
 
+/**
+ * @desc initialize the store with a redux store.
+ * should be called before angular bootstrap.
+ *
+ * @param store
+ */
 exports.initStore = function (store) {
   _store = store;
 };
 
+/**
+ * @desc a property or method annotation. bind a property on
+ * the state to the decorated property of the class.
+ *
+ * for example:
+ * '@MapState('title') title;'
+ * '@MapState('app.title.value') title;'
+ *
+ * this annotator can be used to decorate a method as well.
+ *
+ * for example:
+ * '@MapState()
+ *  mapStateToThis(state) {
+ *    return {
+ *      title: state.title
+ *    }
+ *  }'
+ *
+ * @param {string} value - to be find on the state
+ * @returns {Function} the annotate function
+ *
+ */
 exports.MapState = function (value) {
   value = value || null;
 
@@ -27,6 +54,26 @@ exports.MapState = function (value) {
   }
 };
 
+/**
+ * @desc bind one or more action creators
+ * to a property on the class.
+ *
+ * for example:
+ * `@BindActions(actionCreator) action'
+ *
+ *  you can also pass an object that map
+ *  several action creators:
+ *
+ *  for example:
+ *  import * as actions from 'actions'
+ *
+ *  `@BindActions(actions) actions`
+ *
+ *
+ * @param {Function | object } actions
+ * @returns {Function} the annotator function
+ *
+ */
 exports.BindActions = function (actions) {
   return function (target, prop) {
     if (target.ngOnInit) {
@@ -43,6 +90,16 @@ exports.BindActions = function (actions) {
   }
 };
 
+/**
+ * @desc identify the decorated property
+ * (class method or property) and call the appropriate
+ * function for binding
+ *
+ * @param {*} target - the component instance
+ * @param prop - the component property to bind to
+ * @param {string} value - the value to be bind on the state
+ *
+ */
 function mapStateSlice(target, prop, value) {
 
   if (utils.isFunction(target[prop])) {
@@ -52,6 +109,16 @@ function mapStateSlice(target, prop, value) {
   return mapSliceToProp(target, prop, value)
 }
 
+/**
+ * @desc if a map function was decorated,
+ * it will be invoked with the current state and
+ * the returned object will be merged with the component
+ * instance
+ *
+ * @param target
+ * @param prop
+ * @returns {*}
+ */
 function useMapFunction(target, prop) {
   var _state = _store.getState();
   _.assign(target, target[prop](_state));
@@ -61,6 +128,15 @@ function useMapFunction(target, prop) {
   })
 }
 
+/**
+ * @desc map a value from the state to
+ * a property on the component instance
+ *
+ * @param target - the component instance
+ * @param prop - the component property to bind to
+ * @param value - the value of the prop on state
+ *
+ */
 function mapSliceToProp(target, prop, value) {
   if (!target[prop]) {
     target[prop] = getStateSlice(_store, value);
@@ -73,6 +149,14 @@ function mapSliceToProp(target, prop, value) {
   })
 }
 
+/**
+ * @desc returns a slice of the state
+ * to be bind to
+ *
+ * @param store
+ * @param slice
+ * @returns {*}
+ */
 function getStateSlice(store, slice) {
   var _state = store.getState();
 
@@ -86,6 +170,13 @@ function getStateSlice(store, slice) {
   }
 }
 
+/**
+ * @desc unsubscribe from the store on
+ * when the component destroyed
+ *
+ * @param target
+ * @param unsubscribeFn
+ */
 function unsubscribe(target, unsubscribeFn) {
   if (target.ngOnDestroy) {
     var _onDestroy = target.ngOnDestroy;
