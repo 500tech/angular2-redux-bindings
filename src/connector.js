@@ -6,7 +6,6 @@ var _store;
 
 /**
  * @desc initialize the store with a redux store.
- * should be called before angular bootstrap.
  *
  * @param store
  */
@@ -17,20 +16,6 @@ exports.initStore = function (store) {
 /**
  * @desc a property or method annotation. bind a property on
  * the state to the decorated property of the class.
- *
- * for example:
- * '@MapState('title') title;'
- * '@MapState('app.title.value') title;'
- *
- * this annotator can be used to decorate a method as well.
- *
- * for example:
- * '@MapState()
- *  mapStateToThis(state) {
- *    return {
- *      title: state.title
- *    }
- *  }'
  *
  * @param {string} value - to be find on the state
  * @returns {Function} the annotate function
@@ -57,18 +42,6 @@ exports.MapState = function (value) {
 /**
  * @desc bind one or more action creators
  * to a property on the class.
- *
- * for example:
- * `@BindActions(actionCreator) action'
- *
- *  you can also pass an object that map
- *  several action creators:
- *
- *  for example:
- *  import * as actions from 'actions'
- *
- *  `@BindActions(actions) actions`
- *
  *
  * @param {Function | object } actions
  * @returns {Function} the annotator function
