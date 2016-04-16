@@ -1,37 +1,54 @@
 angular2 redux binding
 ==========
 
-Bind state and actions creators to angular components
-using annotations
+Bind redux store and actions creators to angular2 components
+using annotations.
 
 
 How to use:
 --------------------------
 
 Add to your packages:
-
+```
     npm install angular2-redux-binding --save
-
+```
 call the `initStore()` before angular bootstrap:
-
+```
     import {initStore} from 'angular2-redux-bindings'
 
     initStore(store)
+    // bootstrap angular
+```
 
+bind state values to your component properties with `@MapState`:
 
-bind state to your component with `@MapState`:
 ```
   import {mapState} from 'angular2-redux-bindings'
 
   class Component () {
 
     @MapState('value')
-      private value;
+    private value;
   }
 
 ```
 
-you can use a function instead:
+you can bind a deeply nested value up to three levels :
+
+```
+  import {mapState} from 'angular2-redux-bindings'
+
+  class Component () {
+
+    @MapState('app.list.title')
+    private title;
+
+  }
+
+```
+
+if the value is deeply nested, use a function instead:
+
 ```
   import {mapState} from 'angular2-redux-bindings'
 
@@ -40,13 +57,15 @@ you can use a function instead:
     @MapState()
     mapStateToThis(state){
       return {
-        value: state.value
+        value: state.app.list.item.value
       }
     }
   }
 
 ```
-Bind action creators (one or more):
+
+Bind an action creator to a component property with `@MapState`:
+
 ```
   import {bindActions}   from 'angular2-redux-bindings'
   import {actionCreator} from 'your-acrions'
@@ -59,9 +78,11 @@ Bind action creators (one or more):
 
 ```
 
+Bind multiple action creators:
+
 ```
-  import {bindActions}   from 'angular2-redux-bindings'
-  import * as actions    from 'your-acrions'
+  import {bindActions} from 'angular2-redux-bindings'
+  import * as actions  from 'your-acrions'
 
   class Component () {
 
@@ -71,4 +92,16 @@ Bind action creators (one or more):
 
 ```
 
-better documentation on the way...
+The module is under development, **but the API won't change** so you can use it in your
+project if you like.
+
+contribution:
+--------------------------
+
+PR's are welcome!
+the module does't required any compilation.
+just clone it. to run tests (in watch mode) run;
+
+```
+  npm test
+```

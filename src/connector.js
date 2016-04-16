@@ -1,6 +1,7 @@
-var redux = require('redux');
-var utils = require('./utils');
-var _     = require('lodash');
+var redux  = require('redux');
+var utils  = require('./utils');
+var ERRORS = require('./constants').ERRORS;
+var _      = require('lodash');
 
 var _store;
 
@@ -25,6 +26,11 @@ exports.MapState = function (value) {
   value = value || null;
 
   return function (target, prop) {
+
+    if (utils.isUndefined(_store)) {
+      throw new Error(ERRORS.STORE_UNDEFINED);
+    }
+
     if (target.ngOnInit) {
       var _onInit     = target.ngOnInit;
       target.ngOnInit = function () {
@@ -136,10 +142,17 @@ function getStateSlice(store, slice) {
   if (utils.isString(slice)) {
     var _keys = slice.split('.');
 
-    _keys.forEach(function (key) {
-      return _state = _state[key]
-    });
-    return _state;
+    switch (_keys.length) {
+      case 1:
+        return _state[_keys[0]];
+      case 2:
+        return _state[_keys[0]][_keys[1]];
+      case 3:
+        return _state[_keys[0]][_keys[1]][_keys[2]];
+      default:
+        console.error(ERRORS.DEEP_NESTING);
+        return _state;
+    }
   }
 }
 

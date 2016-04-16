@@ -6,6 +6,10 @@ exports.isString = function (value) {
   return typeof value === 'string'
 };
 
+exports.isUndefined = function (value) {
+  return typeof value === 'undefined'
+};
+
 /**
  * @desc compare two given objects
  *
