@@ -25,6 +25,10 @@ bind state values to your component properties with `@MapState`:
 ```
   import {mapState} from 'angular2-redux-bindings'
 
+  @Component({
+    template: '<p>{{ value }}</p>'
+  })
+
   class Component () {
 
     @MapState('value')
@@ -37,6 +41,10 @@ you can bind a deeply nested value up to three levels :
 
 ```
   import {mapState} from 'angular2-redux-bindings'
+
+  @Component({
+      template: '<h2>{{ title }}</h2>'
+    })
 
   class Component () {
 
@@ -52,11 +60,19 @@ if the value is deeply nested, use a function instead:
 ```
   import {mapState} from 'angular2-redux-bindings'
 
+  @Component({
+      template: `
+            <h2>{{ title }}</h2>
+            <p>{{ value }} </p>
+            `
+  })
+
   class Component () {
 
     @MapState()
     mapStateToThis(state){
       return {
+        title: state.app.list.title,
         value: state.app.list.item.value
       }
     }
@@ -69,6 +85,10 @@ Bind an action creator to a component property with `@MapState`:
 ```
   import {bindActions}   from 'angular2-redux-bindings'
   import {actionCreator} from 'your-acrions'
+
+  @Component({
+      template: `<button (click)='action()'>click</h2>`
+   })
 
   class Component () {
 
@@ -83,6 +103,11 @@ Bind multiple action creators:
 ```
   import {bindActions} from 'angular2-redux-bindings'
   import * as actions  from 'your-acrions'
+
+  @Component({
+     template: `<button (click)='actions.action()'>click</h2>`
+  })
+
 
   class Component () {
 
