@@ -26,11 +26,7 @@ exports.MapState = function (value) {
   value = value || null;
 
   return function (target, prop) {
-
-    if (utils.isUndefined(_store)) {
-      throw new Error(ERRORS.STORE_UNDEFINED);
-    }
-
+    
     if (target.ngOnInit) {
       var _onInit     = target.ngOnInit;
       target.ngOnInit = function () {
