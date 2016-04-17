@@ -80,7 +80,7 @@ if the value is deeply nested, use a function instead:
 
 ```
 
-Bind an action creator to a component property with `@MapState`:
+Bind an action creator to a component property with `@BindActions`:
 
 ```
   import {bindActions}   from 'angular2-redux-bindings'
