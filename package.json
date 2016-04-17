@@ -18,7 +18,7 @@
     "javaScript",
     "typeScript"
   ],
-  "author": "Nir Kaufman <500tech.com> (Nir@500tech.com)",
+  "author": "Nir Kaufman <500tech.com> (nirkaufman@gmail.com)",
   "license": "MIT",
   "dependencies": {
     "lodash": "^4.10.0",
