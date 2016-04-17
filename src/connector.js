@@ -11,7 +11,10 @@ var _store;
  * @param store
  */
 exports.initStore = function (store) {
-  _store = store;
+  if(_store){
+    return console.error(ERRORS.STORE_INIT);
+  }
+  return _store = store;
 };
 
 /**
