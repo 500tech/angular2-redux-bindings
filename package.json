@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nirkaufman/angular2-redux-bindings.git"
+    "url": "git+https://github.com/500tech/angular2-redux-bindings.git"
   },
   "keywords": [
     "angular2",
@@ -18,7 +18,7 @@
     "javaScript",
     "typeScript"
   ],
-  "author": "Nir Kaufman <nirkaufman.com> (nirkaufman.com)",
+  "author": "Nir Kaufman <500tech.com> (Nir@500tech.com)",
   "license": "MIT",
   "dependencies": {
     "lodash": "^4.10.0",
