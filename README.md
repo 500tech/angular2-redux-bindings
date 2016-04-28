@@ -13,7 +13,7 @@ Add to your packages:
     npm install angular2-redux-binding --save
 ```
 call the `initStore()` before angular bootstrap:
-```
+```javascript
     import {initStore} from 'angular2-redux-bindings'
 
     initStore(store)
@@ -22,14 +22,14 @@ call the `initStore()` before angular bootstrap:
 
 bind state values to your component properties with `@MapState`:
 
-```
+```javascript
   import {mapState} from 'angular2-redux-bindings'
 
   @Component({
     template: '<p>{{ value }}</p>'
   })
 
-  class Component () {
+  class Component {
 
     @MapState('value')
     private value;
@@ -39,14 +39,14 @@ bind state values to your component properties with `@MapState`:
 
 you can bind a deeply nested value up to three levels :
 
-```
+```javascript
   import {mapState} from 'angular2-redux-bindings'
 
   @Component({
       template: '<h2>{{ title }}</h2>'
     })
 
-  class Component () {
+  class Component {
 
     @MapState('app.list.title')
     private title;
@@ -57,7 +57,7 @@ you can bind a deeply nested value up to three levels :
 
 if the value is deeply nested, use a function instead:
 
-```
+```javascript
   import {mapState} from 'angular2-redux-bindings'
 
   @Component({
@@ -67,7 +67,7 @@ if the value is deeply nested, use a function instead:
             `
   })
 
-  class Component () {
+  class Component {
 
     @MapState()
     mapStateToThis(state){
@@ -82,7 +82,7 @@ if the value is deeply nested, use a function instead:
 
 Bind an action creator to a component property with `@BindActions`:
 
-```
+```javascript
   import {bindActions}   from 'angular2-redux-bindings'
   import {actionCreator} from 'your-acrions'
 
@@ -90,7 +90,7 @@ Bind an action creator to a component property with `@BindActions`:
       template: `<button (click)='action()'>click</h2>`
    })
 
-  class Component () {
+  class Component {
 
     @BindActions(actionCreator)
     private action;
@@ -100,7 +100,7 @@ Bind an action creator to a component property with `@BindActions`:
 
 Bind multiple action creators:
 
-```
+```javascript
   import {bindActions} from 'angular2-redux-bindings'
   import * as actions  from 'your-acrions'
 
@@ -109,7 +109,7 @@ Bind multiple action creators:
   })
 
 
-  class Component () {
+  class Component {
 
     @BindActions(actions)
     private actions;
