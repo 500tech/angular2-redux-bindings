@@ -11,7 +11,7 @@ var _store;
  * @param store
  */
 exports.initStore = function (store) {
-  if(_store){
+  if (_store) {
     return console.error(ERRORS.STORE_INIT);
   }
   return _store = store;
@@ -29,7 +29,7 @@ exports.MapState = function (value) {
   value = value || null;
 
   return function (target, prop) {
-    
+
     if (target.ngOnInit) {
       var _onInit     = target.ngOnInit;
       target.ngOnInit = function () {
@@ -102,6 +102,7 @@ function useMapFunction(target, prop) {
   _.assign(target, target[prop](_state));
 
   return _store.subscribe(()=> {
+    var _state = _store.getState();
     _.assign(target, target[prop](_state));
   })
 }
