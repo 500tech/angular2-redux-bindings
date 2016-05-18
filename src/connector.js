@@ -29,11 +29,11 @@ exports.MapState = function (value) {
   value = value || null;
 
   return function (target, prop) {
-    
+
     if (target.ngOnInit) {
       var _onInit     = target.ngOnInit;
       target.ngOnInit = function () {
-        _onInit();
+        _onInit.apply(target);
         unsubscribe(target, mapStateSlice(target, prop, value));
       }
     } else {
@@ -57,8 +57,8 @@ exports.BindActions = function (actions) {
     if (target.ngOnInit) {
       var _onInit     = target.ngOnInit;
       target.ngOnInit = function () {
-        _onInit();
-        target[prop] = redux.bindActionCreators(actions, _store.dispatch)
+        target[prop] = redux.bindActionCreators(actions, _store.dispatch);
+        _onInit.apply(target);
       }
     } else {
       target.ngOnInit = function () {
@@ -102,7 +102,7 @@ function useMapFunction(target, prop) {
   _.assign(target, target[prop](_state));
 
   return _store.subscribe(()=> {
-    _.assign(target, target[prop](_state));
+    _.assign(target, target[prop](_store.getState()));
   })
 }
 
