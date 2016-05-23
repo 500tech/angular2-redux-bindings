@@ -1,7 +1,19 @@
 var redux  = require('redux');
-var utils  = require('./utils');
-var ERRORS = require('./constants').ERRORS;
 var _      = require('lodash');
+
+var ERRORS = {
+  DEEP_NESTING: 'value is reached the 4 level nested limit. use a map method instead',
+  STORE_UNDEFINED: 'Store is undefined. did you forgot to call `initStore`?',
+  STORE_INIT: 'the store already initialize. did you called initStore twice?'
+};
+
+function isFunction (value) {
+  return typeof  value === "function";
+}
+
+function isString  (value) {
+  return typeof value === 'string'
+}
 
 var _store;
 
@@ -80,7 +92,7 @@ exports.BindActions = function (actions) {
  */
 function mapStateSlice(target, prop, value) {
 
-  if (utils.isFunction(target[prop])) {
+  if (isFunction(target[prop])) {
     return useMapFunction(target, prop);
   }
 
@@ -138,7 +150,7 @@ function mapSliceToProp(target, prop, value) {
 function getStateSlice(store, slice) {
   var _state = store.getState();
 
-  if (utils.isString(slice)) {
+  if (isString(slice)) {
     var _keys = slice.split('.');
 
     switch (_keys.length) {

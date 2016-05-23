@@ -26,6 +26,7 @@
   },
   "devDependencies": {
     "expect": "1.16.0",
-    "mocha": "2.4.5"
+    "mocha": "2.4.5",
+    "webpack": "^1.13.1"
   }
 }
