@@ -1,6 +1,6 @@
 {
   "name": "angular2-redux-bindings",
-  "version": "0.1.14",
+  "version": "0.1.15",
   "description": "Anotations for connecting Angular2 components to redux store",
   "main": "src/connector.js",
   "typings": "./index.d.ts",
